@@ -91,7 +91,7 @@ export class AuthService {
             return `${rootURL}?${querystring.stringify(options)}`;
         }
 
-        return res.send(getGoogleAuthUrl());
+        return res.redirect(getGoogleAuthUrl());
     }
 
     async getGoogleInformation(req:any, res:any) {

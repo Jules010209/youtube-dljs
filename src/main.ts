@@ -4,6 +4,7 @@ import { application } from '../config.json';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import * as cors from 'cors';
 import * as cookieParser from 'cookie-parser';
+import { resolve } from 'path';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -14,6 +15,9 @@ async function bootstrap() {
   }));
 
   app.use(cookieParser());
+
+  app.setBaseViewsDir(resolve(__dirname + '\\..\\..\\views'));
+  app.setViewEngine('ejs');
 
   await app.listen(application.port);
 }
